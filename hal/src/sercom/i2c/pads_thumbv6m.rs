@@ -21,7 +21,7 @@ where
     scl: SCL,
 }
 
-#[cfg(feature = "samd11")]
+#[cfg(any(feature = "samd10",feature = "samd11"))]
 impl<S, DI, CI> PadsFromIds<S, DI, CI>
 where
     S: Sercom,
@@ -42,7 +42,7 @@ where
     }
 }
 
-#[cfg(not(feature = "samd11"))]
+#[cfg(not(any(feature = "samd10",feature = "samd11")))]
 impl<S, DI, CI> PadsFromIds<S, DI, CI>
 where
     S: Sercom,
@@ -107,7 +107,7 @@ where
 ///
 /// [`Pin`]: crate::gpio::Pin
 /// [`PinId`]: crate::gpio::PinId
-#[cfg(feature = "samd11")]
+#[cfg(any(feature = "samd10",feature = "samd11"))]
 pub type PadsFromIds<S, SDA, SCL> = Pads<S, Pad<S, Pad0, SDA>, Pad<S, Pad1, SCL>>;
 
 /// Define a set of [`Pads`] using [`PinId`]s instead of [`Pin`]s

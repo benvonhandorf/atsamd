@@ -68,6 +68,8 @@ usb-device = {version = "0.2", optional = true}
 # users should specify a corresponding variant (see below). The variant features
 # will select the correct PAC, as well as other configuration features.
 
+atsamd10d = {version = "0.12.0", path = "../pac/atsamd10d", optional = true}
+
 atsamd11c = {version = "0.12.0", path = "../pac/atsamd11c", optional = true}
 atsamd11d = {version = "0.12.0", path = "../pac/atsamd11d", optional = true}
 
@@ -105,6 +107,8 @@ atsame54p = {version = "0.12.0", path = "../pac/atsame54p", optional = true}
 # These features represent the public interface of the HAL and are not expected
 # to change. But all implied features are considered implementation details and
 # subject to change without notice.
+
+samd10d = ["samd10", "atsamd10d", "periph-d10d", "pins-d10d"]
 
 samd11c = ["samd11", "atsamd11c", "periph-d11c", "pins-d11c"]
 samd11d = ["samd11", "atsamd11d", "periph-d11d", "pins-d11d"]
@@ -210,6 +214,7 @@ thumbv6 = ["device"]
 thumbv7 = ["device"]
 
 # Map each series of chips to its instruction set
+samd10 = ["thumbv6"]
 samd11 = ["thumbv6"]
 samd21 = ["thumbv6"]
 samd51 = ["thumbv7"]
@@ -256,6 +261,8 @@ pins-100 = ["pins-64"]
 pins-128 = ["pins-100"]
 
 # Map each variant to its corresponding set of pins
+pins-d10d = ["pins-24"]
+
 pins-d11c = ["pins-14", "has-pa28"]
 pins-d11d = ["pins-24", "has-pa28", "has-pa27"]
 
@@ -315,6 +322,15 @@ has-tcc3 = []
 has-usb = []
 
 # Map each variant to its collection of peripherals
+periph-d10d = [
+  "has-sercom0", 
+  "has-sercom1", 
+  "has-sercom2", 
+  "has-tc1", 
+  "has-tc2", 
+  "has-tcc0"
+]
+
 periph-d11c = ["has-sercom0", "has-sercom1", "has-tc1", "has-tc2", "has-tcc0"]
 periph-d11d = ["periph-d11c", "has-sercom2"]
 

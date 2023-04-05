@@ -212,7 +212,7 @@ where
     }
 }
 
-#[cfg(feature = "samd11")]
+#[cfg(any(feature = "samd10",feature = "samd11"))]
 impl<S, DI, DO, CK, SS> Pads<S, DI, DO, CK, SS>
 where
     S: Sercom,

@@ -7,7 +7,7 @@ use crate::{
 };
 use core::marker::PhantomData;
 
-#[cfg(not(feature = "samd11"))]
+#[cfg(not(any(feature = "samd11", feature = "samd10")))]
 use crate::gpio::AnyPin;
 
 //=============================================================================
@@ -209,7 +209,7 @@ where
     }
 }
 
-#[cfg(feature = "samd11")]
+#[cfg(any(feature = "samd10",feature = "samd11"))]
 impl<S, RX, TX, RTS, CTS> Pads<S, RX, TX, RTS, CTS>
 where
     S: Sercom,

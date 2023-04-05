@@ -209,9 +209,9 @@ crate::paste::item! {
 // clarity's sake, the `ei!()` invocations below have been split into SAMD11-
 // and SAMD21-specific declarations.
 
-// SAMD11
+// SAMD11 / SAMD10
 
-#[cfg(feature = "samd11")]
+#[cfg(any(feature = "samd10",feature = "samd11"))]
 mod impls {
     use super::*;
 

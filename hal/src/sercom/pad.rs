@@ -43,7 +43,7 @@ use paste::paste;
 use seq_macro::seq;
 
 use super::Sercom;
-#[cfg(not(feature = "samd11"))]
+#[cfg(any(feature = "samd10",feature = "samd11"))]
 use crate::gpio::OptionalPinId;
 use crate::gpio::{AnyPin, OptionalPin, Pin, PinId, PinMode};
 use crate::typelevel::{NoneT, Sealed};
@@ -173,7 +173,7 @@ impl<P: IsPad> SomePad for P {}
 /// See the documentation on [type-level functions] for more details.
 ///
 /// [type-level functions]: crate::typelevel#type-level-functions
-#[cfg(feature = "samd11")]
+#[cfg(any(feature = "samd10",feature = "samd11"))]
 pub trait GetPad<S, N>
 where
     S: Sercom,
@@ -197,7 +197,7 @@ where
 /// See the documentation on [type-level functions] for more details.
 ///
 /// [type-level functions]: crate::typelevel#type-level-functions
-#[cfg(not(feature = "samd11"))]
+#[cfg(not(any(feature = "samd10",feature = "samd11")))]
 pub trait GetPad<S>
 where
     S: Sercom,
@@ -213,22 +213,22 @@ where
 
 /// Type alias using [`GetPad`] to recover the [`PinMode`] for a given SERCOM
 /// pad
-#[cfg(feature = "samd11")]
+#[cfg(any(feature = "samd10",feature = "samd11"))]
 pub type PadMode<S, N, I> = <I as GetPad<S, N>>::PinMode;
 
 /// Type alias using [`GetPad`] to recover the [`PinMode`] for a given SERCOM
 /// pad
-#[cfg(not(feature = "samd11"))]
+#[cfg(not(any(feature = "samd10",feature = "samd11")))]
 pub type PadMode<S, I> = <I as GetPad<S>>::PinMode;
 
 /// Type alias to recover a [`Pin`] configured as a SERCOM pad in the correct
 /// [`PadMode`]
-#[cfg(feature = "samd11")]
+#[cfg(any(feature = "samd10",feature = "samd11"))]
 pub type Pad<S, N, I> = Pin<I, PadMode<S, N, I>>;
 
 /// Type alias to recover a [`Pin`] configured as a SERCOM pad in the correct
 /// [`PadMode`]
-#[cfg(not(feature = "samd11"))]
+#[cfg(not(any(feature = "samd10",feature = "samd11")))]
 pub type Pad<S, I> = Pin<I, PadMode<S, I>>;
 
 //==============================================================================
@@ -244,19 +244,19 @@ pub type Pad<S, I> = Pin<I, PadMode<S, I>>;
 /// `Option<Pad>`.
 ///
 /// [type-level functions]: crate::typelevel#type-level-functions
-#[cfg(not(feature = "samd11"))]
+#[cfg(not(any(feature = "samd10",feature = "samd11")))]
 pub trait GetOptionalPad<S: Sercom>: OptionalPinId {
     type PadNum: OptionalPadNum;
     type Pad: OptionalPad;
 }
 
-#[cfg(not(feature = "samd11"))]
+#[cfg(not(any(feature = "samd10",feature = "samd11")))]
 impl<S: Sercom> GetOptionalPad<S> for NoneT {
     type PadNum = NoneT;
     type Pad = NoneT;
 }
 
-#[cfg(not(feature = "samd11"))]
+#[cfg(not(any(feature = "samd10",feature = "samd11")))]
 impl<S, I> GetOptionalPad<S> for I
 where
     S: Sercom,

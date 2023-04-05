@@ -394,8 +394,8 @@ impl GenericClockController {
     }
 }
 
-// samd11
-#[cfg(feature = "samd11")]
+// samd11 / samd10
+#[cfg(any(feature = "samd10",feature = "samd11"))]
 clock_generator!(
     (tcc0, Tcc0Clock, TCC0),
     (tc1_tc2, Tc1Tc2Clock, TC1_TC2),
