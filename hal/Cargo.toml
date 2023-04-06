@@ -142,6 +142,8 @@ same54p = ["same54", "atsame54p", "periph-e54p", "pins-e54p"]
 # Instead of selecting a variant feature above, users can optionally select an
 # `-rt` feature, which enables the `rt` feature of the corresponding PAC.
 
+samd10d-rt = ["samd10d", "atsamd10d/rt"]
+
 samd11c-rt = ["samd11c", "atsamd11c/rt"]
 samd11d-rt = ["samd11d", "atsamd11d/rt"]
 
@@ -261,7 +263,7 @@ pins-100 = ["pins-64"]
 pins-128 = ["pins-100"]
 
 # Map each variant to its corresponding set of pins
-pins-d10d = ["pins-24"]
+pins-d10d = ["pins-24", "has-pa27", "has-pa28"]
 
 pins-d11c = ["pins-14", "has-pa28"]
 pins-d11d = ["pins-24", "has-pa28", "has-pa27"]

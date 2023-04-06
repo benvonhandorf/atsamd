@@ -189,12 +189,13 @@ adc_pins! {
 #[cfg(feature = "samd10")]
 adc_pins! {
     PA02: 0,
-    PA03: 0,
+    PA03: 1,
     PA04: 2,
     PA05: 3,
-    PA06: 2,
-    PA07: 2,
-    
+    PA06: 4,
+    PA07: 5,
+    PA10: 8,
+    PA11: 9,
     PA14: 6,
     PA15: 7
 }

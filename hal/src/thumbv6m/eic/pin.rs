@@ -205,13 +205,58 @@ crate::paste::item! {
     };
 }
 
-// The SAMD11 and SAMD21 devices have different ExtInt designations. Just for
+// The SAMD11/SAMD10 and SAMD21 devices have different ExtInt designations. Just for
 // clarity's sake, the `ei!()` invocations below have been split into SAMD11-
 // and SAMD21-specific declarations.
 
-// SAMD11 / SAMD10
+// SAMD10
 
-#[cfg(any(feature = "samd10",feature = "samd11"))]
+#[cfg(feature = "samd10")]
+mod impls {
+    use super::*;
+
+    ei!(ExtInt[1] {
+        PA15,
+        PA17,
+    });
+
+    ei!(ExtInt[2] {
+        PA02,
+        PA10,
+        PA30,
+    });
+
+    ei!(ExtInt[3] {
+        PA03,
+        PA11,
+        PA31,
+    });
+
+    ei!(ExtInt[4] {
+        PA04,
+        PA24,
+    });
+
+    ei!(ExtInt[5] {
+        PA05,
+        PA25,
+    });
+
+    ei!(ExtInt[6] {
+        PA06,
+        PA08,
+    });
+
+    ei!(ExtInt[7] {
+        PA07,
+        PA09,
+        PA27,
+    });
+}
+
+// SAMD11
+
+#[cfg(feature = "samd11")]
 mod impls {
     use super::*;
 

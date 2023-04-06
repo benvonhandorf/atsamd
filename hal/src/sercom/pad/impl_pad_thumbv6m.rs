@@ -160,12 +160,12 @@ pad_table!(
         #[cfg(feature = "samd21")]
         D: (Sercom2, Pad1) + I2C,
     }
-    #[cfg(feature = "samd21")]
+    #[cfg(feature = "pins-24")]
     PA10 {
         C: (Sercom0, Pad2),
         D: (Sercom2, Pad2),
     }
-    #[cfg(feature = "samd21")]
+    #[cfg(feature = "pins-24")]
     PA11 {
         C: (Sercom0, Pad3),
         D: (Sercom2, Pad3),
@@ -196,7 +196,7 @@ pad_table!(
         #[cfg(feature = "has-sercom4")]
         D: (Sercom4, Pad3),
     }
-    #[cfg(feature = "samd21")]
+    #[cfg(any(feature = "samd21"))]
     PA16 {
         C: (Sercom1, Pad0) + I2C,
         D: (Sercom3, Pad0) + I2C,

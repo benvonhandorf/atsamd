@@ -43,7 +43,7 @@ use paste::paste;
 use seq_macro::seq;
 
 use super::Sercom;
-#[cfg(any(feature = "samd10",feature = "samd11"))]
+#[cfg(not(any(feature = "samd10",feature = "samd11")))]
 use crate::gpio::OptionalPinId;
 use crate::gpio::{AnyPin, OptionalPin, Pin, PinId, PinMode};
 use crate::typelevel::{NoneT, Sealed};
