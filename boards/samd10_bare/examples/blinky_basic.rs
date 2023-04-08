@@ -28,13 +28,11 @@ fn main() -> ! {
     );
     let pins = bsp::Pins::new(peripherals.PORT);
     let mut red_led = pins.pa03.into_push_pull_output();
-    let mut sink_pin = pins.pa04.into_push_pull_output();
-    sink_pin.set_low().unwrap();
     let mut delay = Delay::new(core.SYST, &mut clocks);
     loop {
         delay.delay_ms(200u8);
         red_led.set_high().unwrap();
-        delay.delay_ms(200u8);
+        delay.delay_ms(2000u32);
         red_led.set_low().unwrap();
     }
 }
