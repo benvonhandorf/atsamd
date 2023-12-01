@@ -17,9 +17,13 @@ chip = "ATSAMD10D13AM"
 version = "0.7"
 optional = true
 
+[dependencies.cortex-m]
+version = "0.7"
+features = ["critical-section-single-core"]
+
 [dependencies.atsamd-hal]
 path = "../../hal"
-# version = "0.15.1"
+version = "0.16.0"
 default-features = false
 
 [dev-dependencies]
@@ -30,7 +34,7 @@ panic-probe = "0.2.0"
 rtt-target = { version = "0.3.0", features = ["cortex-m"] }
 
 [features]
-# ask the HAL to enable atsamd11c support
+# ask the HAL to enable atsamd10d support
 default = ["rt", "atsamd-hal/samd10d"]
 rt = ["cortex-m-rt", "atsamd-hal/samd10d-rt"]
 unproven = ["atsamd-hal/unproven"]
